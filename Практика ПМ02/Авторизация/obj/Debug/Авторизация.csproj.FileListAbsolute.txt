@@ -1,0 +1,10 @@
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.exe.config
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.exe
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.pdb
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.Form1.resources
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.Properties.Resources.resources
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.exe
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.pdb
