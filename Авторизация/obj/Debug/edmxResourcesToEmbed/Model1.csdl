@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="МедицинскаяЛабораторияModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Авторизация">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Код_пользователя" Type="Int32" />
+    <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IP_адрес" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Авторизация_Пользователи" FromRole="Авторизация" ToRole="Пользователи" />
+  </EntityType>
+  <EntityType Name="Анализатор">
+    <Key>
+      <PropertyRef Name="Код_анализатора" />
+    </Key>
+    <Property Name="Код_анализатора" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Оказанные_услуги" Relationship="Self.FK_Оказанные_услуги_Анализатор" FromRole="Анализатор" ToRole="Оказанные_услуги" />
+    <NavigationProperty Name="Работа_анализатора" Relationship="Self.FK_Работа_анализатора_Анализатор" FromRole="Анализатор" ToRole="Работа_анализатора" />
+  </EntityType>
+  <EntityType Name="Должность">
+    <Key>
+      <PropertyRef Name="Код_должности" />
+    </Key>
+    <Property Name="Код_должности" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Пользователи_Должность" FromRole="Должность" ToRole="Пользователи" />
+    <NavigationProperty Name="Работа_с_биоматериаломи" Relationship="Self.FK_Работа_с_биоматериаломи_Должность" FromRole="Должность" ToRole="Работа_с_биоматериаломи" />
+  </EntityType>
+  <EntityType Name="Допольнительная_информация">
+    <Key>
+      <PropertyRef Name="Код_допольнительной_информации" />
+    </Key>
+    <Property Name="Код_допольнительной_информации" Type="Int32" Nullable="false" />
+    <Property Name="Код_пользователя" Type="Int32" />
+    <Property Name="Серия_паспорта" Type="Int32" />
+    <Property Name="Номер_паспорта" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Номер_страховой_компании" Type="Int32" />
+    <Property Name="Номер_страхового_полиса" Type="Int32" />
+    <Property Name="Код_типа_страхового_полиса" Type="Int32" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Допольнительная_информация_Пользователи" FromRole="Допольнительная_информация" ToRole="Пользователи" />
+    <NavigationProperty Name="Страховой_полис" Relationship="Self.FK_Допольнительная_информация_Страховой_полис" FromRole="Допольнительная_информация" ToRole="Страховой_полис" />
+  </EntityType>
+  <EntityType Name="Заказ">
+    <Key>
+      <PropertyRef Name="Код_заказа" />
+    </Key>
+    <Property Name="Код_заказа" Type="Int32" Nullable="false" />
+    <Property Name="Код_услуги" Type="Int32" />
+    <Property Name="Дата_создания_заказа" Type="DateTime" Precision="0" />
+    <Property Name="Код_статуса_заказа" Type="Int32" />
+    <Property Name="Время_выполнения_заказа" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Код_пользователя" Type="Int32" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Заказ_Пользователи" FromRole="Заказ" ToRole="Пользователи" />
+    <NavigationProperty Name="Статус_заказа" Relationship="Self.FK_Заказ_Статус_заказа" FromRole="Заказ" ToRole="Статус_заказа" />
+  </EntityType>
+  <EntityType Name="Оказанные_услуги">
+    <Key>
+      <PropertyRef Name="Код_оказанной_услуги" />
+    </Key>
+    <Property Name="Код_оказанной_услуги" Type="Int32" Nullable="false" />
+    <Property Name="Дата_оказаной_услуги" Type="DateTime" Precision="0" />
+    <Property Name="Код_заказа" Type="Int32" />
+    <Property Name="Код_сотрудника" Type="Int32" />
+    <Property Name="Код_анализатора" Type="Int32" />
+    <Property Name="Код_услуги" Type="Int32" />
+    <Property Name="Результат" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Анализатор" Relationship="Self.FK_Оказанные_услуги_Анализатор" FromRole="Оказанные_услуги" ToRole="Анализатор" />
+    <NavigationProperty Name="Статус_услуги" Relationship="Self.FK_Оказанные_услуги_Статус_услуги" FromRole="Оказанные_услуги" ToRole="Статус_услуги" />
+    <NavigationProperty Name="Услуги" Relationship="Self.FK_Оказанные_услуги_Услуги" FromRole="Оказанные_услуги" ToRole="Услуги" />
+    <NavigationProperty Name="Статус_заказа" Relationship="Self.FK_Статус_заказа_Оказанные_услуги" FromRole="Оказанные_услуги" ToRole="Статус_заказа" />
+  </EntityType>
+  <EntityType Name="Пациент">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Имя" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Отчество" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Дата_рождения" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Серия_паспорта" Type="Int32" />
+    <Property Name="Номер_паспорта" Type="Int32" />
+    <Property Name="Телефон" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Номер_страхового_полиса" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="Код_пользователя" />
+    </Key>
+    <Property Name="Код_пользователя" Type="Int32" Nullable="false" />
+    <Property Name="Код_должности" Type="Int32" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Авторизация" Relationship="Self.FK_Авторизация_Пользователи" FromRole="Пользователи" ToRole="Авторизация" />
+    <NavigationProperty Name="Должность" Relationship="Self.FK_Пользователи_Должность" FromRole="Пользователи" ToRole="Должность" />
+    <NavigationProperty Name="Допольнительная_информация" Relationship="Self.FK_Допольнительная_информация_Пользователи" FromRole="Пользователи" ToRole="Допольнительная_информация" />
+    <NavigationProperty Name="Заказ" Relationship="Self.FK_Заказ_Пользователи" FromRole="Пользователи" ToRole="Заказ" />
+    <NavigationProperty Name="Работа_с_биоматериаломи" Relationship="Self.FK_Пользователи_Работа_с_биоматериаломи" FromRole="Пользователи" ToRole="Работа_с_биоматериаломи" />
+  </EntityType>
+  <EntityType Name="Работа_с_биоматериаломи">
+    <Key>
+      <PropertyRef Name="Код_взятия_материала" />
+    </Key>
+    <Property Name="Код_взятия_материала" Type="Int32" Nullable="false" />
+    <Property Name="Дата_взятия" Type="DateTime" Precision="0" />
+    <Property Name="Вид_биоматериала" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Код_сотрудника_взявшего_биоматериал" Type="Int32" />
+    <Property Name="Код_должности" Type="Int32" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Должность" Relationship="Self.FK_Работа_с_биоматериаломи_Должность" FromRole="Работа_с_биоматериаломи" ToRole="Должность" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Пользователи_Работа_с_биоматериаломи" FromRole="Работа_с_биоматериаломи" ToRole="Пользователи" />
+  </EntityType>
+  <EntityType Name="Работа_анализатора">
+    <Key>
+      <PropertyRef Name="Код_анализатора" />
+    </Key>
+    <Property Name="Код_анализатора" Type="Int32" Nullable="false" />
+    <Property Name="Дата_и_время_поступления_заказа_на_анализатор" Type="DateTime" Precision="3" />
+    <Property Name="Дата_и_время_выполнения" Type="DateTime" Precision="3" />
+    <Property Name="Код_оказанной_услуги" Type="Int32" />
+    <NavigationProperty Name="Анализатор" Relationship="Self.FK_Работа_анализатора_Анализатор" FromRole="Работа_анализатора" ToRole="Анализатор" />
+  </EntityType>
+  <EntityType Name="Статус_заказа">
+    <Key>
+      <PropertyRef Name="Код_статуса_заказа" />
+    </Key>
+    <Property Name="Код_статуса_заказа" Type="Int32" Nullable="false" />
+    <Property Name="Статус_заказа1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Код_заказа" Type="Int32" />
+    <NavigationProperty Name="Заказ" Relationship="Self.FK_Заказ_Статус_заказа" FromRole="Статус_заказа" ToRole="Заказ" />
+    <NavigationProperty Name="Оказанные_услуги" Relationship="Self.FK_Статус_заказа_Оказанные_услуги" FromRole="Статус_заказа" ToRole="Оказанные_услуги" />
+  </EntityType>
+  <EntityType Name="Статус_услуги">
+    <Key>
+      <PropertyRef Name="Код_статуса_услуги" />
+    </Key>
+    <Property Name="Код_статуса_услуги" Type="Int32" Nullable="false" />
+    <Property Name="Статус_услуги1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Код_услуги" Type="Int32" />
+    <NavigationProperty Name="Оказанные_услуги" Relationship="Self.FK_Оказанные_услуги_Статус_услуги" FromRole="Статус_услуги" ToRole="Оказанные_услуги" />
+  </EntityType>
+  <EntityType Name="Страховая_компания">
+    <Key>
+      <PropertyRef Name="Номер_страховой_компании" />
+    </Key>
+    <Property Name="Номер_страховой_компании" Type="Int32" Nullable="false" />
+    <Property Name="Адрес" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="ИНН" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Р_C" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="БИК" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Страховой_полис" Relationship="Self.FK_Страховой_полис_Страховая_компания" FromRole="Страховая_компания" ToRole="Страховой_полис" />
+  </EntityType>
+  <EntityType Name="Страховой_полис">
+    <Key>
+      <PropertyRef Name="Номер_страхового_полиса" />
+    </Key>
+    <Property Name="Номер_страхового_полиса" Type="Int32" Nullable="false" />
+    <Property Name="Тип_полиса" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Номер_страховой_компании" Type="Int32" />
+    <NavigationProperty Name="Допольнительная_информация" Relationship="Self.FK_Допольнительная_информация_Страховой_полис" FromRole="Страховой_полис" ToRole="Допольнительная_информация" />
+    <NavigationProperty Name="Страховая_компания" Relationship="Self.FK_Страховой_полис_Страховая_компания" FromRole="Страховой_полис" ToRole="Страховая_компания" />
+  </EntityType>
+  <EntityType Name="Услуги">
+    <Key>
+      <PropertyRef Name="Код_услуги" />
+    </Key>
+    <Property Name="Код_услуги" Type="Int32" Nullable="false" />
+    <Property Name="Наименование_услуги" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Стоимость_услуги" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Код_сотрудника_ответственного_за_услугу" Type="Int32" />
+    <Property Name="Код_должности_сотрудника" Type="Int32" />
+    <NavigationProperty Name="Оказанные_услуги" Relationship="Self.FK_Оказанные_услуги_Услуги" FromRole="Услуги" ToRole="Оказанные_услуги" />
+  </EntityType>
+  <Association Name="FK_Авторизация_Пользователи">
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+    <End Role="Авторизация" Type="Self.Авторизация" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователи">
+        <PropertyRef Name="Код_пользователя" />
+      </Principal>
+      <Dependent Role="Авторизация">
+        <PropertyRef Name="Код_пользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Оказанные_услуги_Анализатор">
+    <End Role="Анализатор" Type="Self.Анализатор" Multiplicity="0..1" />
+    <End Role="Оказанные_услуги" Type="Self.Оказанные_услуги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Анализатор">
+        <PropertyRef Name="Код_анализатора" />
+      </Principal>
+      <Dependent Role="Оказанные_услуги">
+        <PropertyRef Name="Код_анализатора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Работа_анализатора_Анализатор">
+    <End Role="Анализатор" Type="Self.Анализатор" Multiplicity="1" />
+    <End Role="Работа_анализатора" Type="Self.Работа_анализатора" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Анализатор">
+        <PropertyRef Name="Код_анализатора" />
+      </Principal>
+      <Dependent Role="Работа_анализатора">
+        <PropertyRef Name="Код_анализатора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Пользователи_Должность">
+    <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Должность">
+        <PropertyRef Name="Код_должности" />
+      </Principal>
+      <Dependent Role="Пользователи">
+        <PropertyRef Name="Код_должности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Работа_с_биоматериаломи_Должность">
+    <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+    <End Role="Работа_с_биоматериаломи" Type="Self.Работа_с_биоматериаломи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Должность">
+        <PropertyRef Name="Код_должности" />
+      </Principal>
+      <Dependent Role="Работа_с_биоматериаломи">
+        <PropertyRef Name="Код_должности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Допольнительная_информация_Пользователи">
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+    <End Role="Допольнительная_информация" Type="Self.Допольнительная_информация" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователи">
+        <PropertyRef Name="Код_пользователя" />
+      </Principal>
+      <Dependent Role="Допольнительная_информация">
+        <PropertyRef Name="Код_пользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Допольнительная_информация_Страховой_полис">
+    <End Role="Страховой_полис" Type="Self.Страховой_полис" Multiplicity="0..1" />
+    <End Role="Допольнительная_информация" Type="Self.Допольнительная_информация" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Страховой_полис">
+        <PropertyRef Name="Номер_страхового_полиса" />
+      </Principal>
+      <Dependent Role="Допольнительная_информация">
+        <PropertyRef Name="Номер_страховой_компании" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Заказ_Пользователи">
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+    <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователи">
+        <PropertyRef Name="Код_пользователя" />
+      </Principal>
+      <Dependent Role="Заказ">
+        <PropertyRef Name="Код_пользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Заказ_Статус_заказа">
+    <End Role="Статус_заказа" Type="Self.Статус_заказа" Multiplicity="0..1" />
+    <End Role="Заказ" Type="Self.Заказ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Статус_заказа">
+        <PropertyRef Name="Код_статуса_заказа" />
+      </Principal>
+      <Dependent Role="Заказ">
+        <PropertyRef Name="Код_статуса_заказа" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Оказанные_услуги_Статус_услуги">
+    <End Role="Статус_услуги" Type="Self.Статус_услуги" Multiplicity="0..1" />
+    <End Role="Оказанные_услуги" Type="Self.Оказанные_услуги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Статус_услуги">
+        <PropertyRef Name="Код_статуса_услуги" />
+      </Principal>
+      <Dependent Role="Оказанные_услуги">
+        <PropertyRef Name="Код_услуги" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Оказанные_услуги_Услуги">
+    <End Role="Услуги" Type="Self.Услуги" Multiplicity="0..1" />
+    <End Role="Оказанные_услуги" Type="Self.Оказанные_услуги" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Услуги">
+        <PropertyRef Name="Код_услуги" />
+      </Principal>
+      <Dependent Role="Оказанные_услуги">
+        <PropertyRef Name="Код_услуги" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Статус_заказа_Оказанные_услуги">
+    <End Role="Оказанные_услуги" Type="Self.Оказанные_услуги" Multiplicity="0..1" />
+    <End Role="Статус_заказа" Type="Self.Статус_заказа" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Оказанные_услуги">
+        <PropertyRef Name="Код_оказанной_услуги" />
+      </Principal>
+      <Dependent Role="Статус_заказа">
+        <PropertyRef Name="Код_заказа" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Пользователи_Работа_с_биоматериаломи">
+    <End Role="Работа_с_биоматериаломи" Type="Self.Работа_с_биоматериаломи" Multiplicity="0..1" />
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Работа_с_биоматериаломи">
+        <PropertyRef Name="Код_взятия_материала" />
+      </Principal>
+      <Dependent Role="Пользователи">
+        <PropertyRef Name="Код_должности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Страховой_полис_Страховая_компания">
+    <End Role="Страховая_компания" Type="Self.Страховая_компания" Multiplicity="0..1" />
+    <End Role="Страховой_полис" Type="Self.Страховой_полис" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Страховая_компания">
+        <PropertyRef Name="Номер_страховой_компании" />
+      </Principal>
+      <Dependent Role="Страховой_полис">
+        <PropertyRef Name="Номер_страховой_компании" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="МедицинскаяЛабораторияEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Авторизация" EntityType="Self.Авторизация" />
+    <EntitySet Name="Анализатор" EntityType="Self.Анализатор" />
+    <EntitySet Name="Должность" EntityType="Self.Должность" />
+    <EntitySet Name="Допольнительная_информация" EntityType="Self.Допольнительная_информация" />
+    <EntitySet Name="Заказ" EntityType="Self.Заказ" />
+    <EntitySet Name="Оказанные_услуги" EntityType="Self.Оказанные_услуги" />
+    <EntitySet Name="Пациент" EntityType="Self.Пациент" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
+    <EntitySet Name="Работа_с_биоматериаломи" EntityType="Self.Работа_с_биоматериаломи" />
+    <EntitySet Name="Работа_анализатора" EntityType="Self.Работа_анализатора" />
+    <EntitySet Name="Статус_заказа" EntityType="Self.Статус_заказа" />
+    <EntitySet Name="Статус_услуги" EntityType="Self.Статус_услуги" />
+    <EntitySet Name="Страховая_компания" EntityType="Self.Страховая_компания" />
+    <EntitySet Name="Страховой_полис" EntityType="Self.Страховой_полис" />
+    <EntitySet Name="Услуги" EntityType="Self.Услуги" />
+    <AssociationSet Name="FK_Авторизация_Пользователи" Association="Self.FK_Авторизация_Пользователи">
+      <End Role="Пользователи" EntitySet="Пользователи" />
+      <End Role="Авторизация" EntitySet="Авторизация" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Оказанные_услуги_Анализатор" Association="Self.FK_Оказанные_услуги_Анализатор">
+      <End Role="Анализатор" EntitySet="Анализатор" />
+      <End Role="Оказанные_услуги" EntitySet="Оказанные_услуги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Работа_анализатора_Анализатор" Association="Self.FK_Работа_анализатора_Анализатор">
+      <End Role="Анализатор" EntitySet="Анализатор" />
+      <End Role="Работа_анализатора" EntitySet="Работа_анализатора" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Пользователи_Должность" Association="Self.FK_Пользователи_Должность">
+      <End Role="Должность" EntitySet="Должность" />
+      <End Role="Пользователи" EntitySet="Пользователи" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Работа_с_биоматериаломи_Должность" Association="Self.FK_Работа_с_биоматериаломи_Должность">
+      <End Role="Должность" EntitySet="Должность" />
+      <End Role="Работа_с_биоматериаломи" EntitySet="Работа_с_биоматериаломи" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Допольнительная_информация_Пользователи" Association="Self.FK_Допольнительная_информация_Пользователи">
+      <End Role="Пользователи" EntitySet="Пользователи" />
+      <End Role="Допольнительная_информация" EntitySet="Допольнительная_информация" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Допольнительная_информация_Страховой_полис" Association="Self.FK_Допольнительная_информация_Страховой_полис">
+      <End Role="Страховой_полис" EntitySet="Страховой_полис" />
+      <End Role="Допольнительная_информация" EntitySet="Допольнительная_информация" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Заказ_Пользователи" Association="Self.FK_Заказ_Пользователи">
+      <End Role="Пользователи" EntitySet="Пользователи" />
+      <End Role="Заказ" EntitySet="Заказ" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Заказ_Статус_заказа" Association="Self.FK_Заказ_Статус_заказа">
+      <End Role="Статус_заказа" EntitySet="Статус_заказа" />
+      <End Role="Заказ" EntitySet="Заказ" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Оказанные_услуги_Статус_услуги" Association="Self.FK_Оказанные_услуги_Статус_услуги">
+      <End Role="Статус_услуги" EntitySet="Статус_услуги" />
+      <End Role="Оказанные_услуги" EntitySet="Оказанные_услуги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Оказанные_услуги_Услуги" Association="Self.FK_Оказанные_услуги_Услуги">
+      <End Role="Услуги" EntitySet="Услуги" />
+      <End Role="Оказанные_услуги" EntitySet="Оказанные_услуги" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Статус_заказа_Оказанные_услуги" Association="Self.FK_Статус_заказа_Оказанные_услуги">
+      <End Role="Оказанные_услуги" EntitySet="Оказанные_услуги" />
+      <End Role="Статус_заказа" EntitySet="Статус_заказа" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Пользователи_Работа_с_биоматериаломи" Association="Self.FK_Пользователи_Работа_с_биоматериаломи">
+      <End Role="Работа_с_биоматериаломи" EntitySet="Работа_с_биоматериаломи" />
+      <End Role="Пользователи" EntitySet="Пользователи" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Страховой_полис_Страховая_компания" Association="Self.FK_Страховой_полис_Страховая_компания">
+      <End Role="Страховая_компания" EntitySet="Страховая_компания" />
+      <End Role="Страховой_полис" EntitySet="Страховой_полис" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(МедицинскаяЛабораторияModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(МедицинскаяЛабораторияModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73103713e9d644a495bda2a65bc22e4f" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Авторизация" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Анализатор" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Должность" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Допольнительная_информация" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Заказ" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Оказанные_услуги" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Пациент" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Пользователи" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Работа_с_биоматериаломи" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Работа_анализатора" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Статус_заказа" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Статус_услуги" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Страховая_компания" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Страховой_полис" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="МедицинскаяЛабораторияModel.Услуги" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Авторизация_Пользователи" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Оказанные_услуги_Анализатор" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Работа_анализатора_Анализатор" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Пользователи_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Работа_с_биоматериаломи_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Допольнительная_информация_Пользователи" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Допольнительная_информация_Страховой_полис" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Заказ_Пользователи" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Заказ_Статус_заказа" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Оказанные_услуги_Статус_услуги" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Оказанные_услуги_Услуги" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Статус_заказа_Оказанные_услуги" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Пользователи_Работа_с_биоматериаломи" ManuallyRouted="false" />
+        <AssociationConnector Association="МедицинскаяЛабораторияModel.FK_Страховой_полис_Страховая_компания" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

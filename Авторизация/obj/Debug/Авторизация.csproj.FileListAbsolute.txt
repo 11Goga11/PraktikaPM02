@@ -1,0 +1,27 @@
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.exe.config
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.exe
+C:\Users\Admin\source\repos\Авторизация\bin\Debug\Авторизация.pdb
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.Form1.resources
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.Properties.Resources.resources
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.exe
+C:\Users\Admin\source\repos\Авторизация\obj\Debug\Авторизация.pdb
+D:\Практика ПМ02\Авторизация\bin\Debug\Авторизация.exe.config
+D:\Практика ПМ02\Авторизация\bin\Debug\Авторизация.exe
+D:\Практика ПМ02\Авторизация\bin\Debug\Авторизация.pdb
+D:\Практика ПМ02\Авторизация\bin\Debug\EntityFramework.dll
+D:\Практика ПМ02\Авторизация\bin\Debug\EntityFramework.SqlServer.dll
+D:\Практика ПМ02\Авторизация\bin\Debug\EntityFramework.xml
+D:\Практика ПМ02\Авторизация\bin\Debug\EntityFramework.SqlServer.xml
+D:\Практика ПМ02\Авторизация\bin\Debug\ru\EntityFramework.resources.dll
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.csproj.AssemblyReference.cache
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.Form1.resources
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.Form2.resources
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.Properties.Resources.resources
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.csproj.GenerateResource.cache
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.csproj.CoreCompileInputs.cache
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.csproj.CopyComplete
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.exe
+D:\Практика ПМ02\Авторизация\obj\Debug\Авторизация.pdb
